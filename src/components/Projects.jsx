@@ -9,7 +9,7 @@ const Projects = () => {
     {
       img: saf,
       title: "SaFarm Website",
-      link: "https://safarm.netlify.com",
+      link: "https://safarm.netlify.app",
       description: "A fullstack farm website. Backend is available on my GitHub."
     },
     {
