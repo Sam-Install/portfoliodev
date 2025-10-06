@@ -51,7 +51,7 @@ const Navbar = () => {
 
 
     <CiMenuBurger className='text-2xl sm:hidden' onClick={()=>setVisible(true)} />
-    <button className='bg-yellow-400 text-white px-3 py-2 text-sm rounded'>ContactMe</button>
+    <button className='bg-white border border-black text-black px-3 py-2 text-sm rounded'>ContactMe</button>
 
 </div>
 
