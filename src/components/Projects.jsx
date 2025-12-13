@@ -3,13 +3,15 @@ import a from '../assets/a9 (1).png'
 import saf from '../assets/safarm.png'
 import bl from '../assets/building.png'
 import sec from '../assets/security.png'
+import br from '../assets/barber.png'
+import gl from '../assets/ganillah.png'
 
 const Projects = () => {
   const screens = [
     {
       img: saf,
       title: "SaFarm Website",
-      link: "https://safarm.netlify.com",
+      link: "https://safarm.netlify.app",
       description: "A fullstack farm website. Backend is available on my GitHub."
     },
     {
@@ -29,6 +31,21 @@ const Projects = () => {
       title: "Security Website (Frontend)",
       link: "https://b-security56.netlify.app",
       description: "A frontend for a security firm website."
+    },
+
+    {
+       img:br,
+       title:"Barbershop Landing Page",
+       link:"https://salbarbershop.netlify.app/",
+       description:"a website frontend part of barbershop soon doing backend of it"
+    },
+
+    {
+
+        img:gl,
+        title:"Ganillahwaters Website",
+        link:"https://ganillahwaters.netlify.app/",
+        description:"a website for a water company dealing with drilling & plumbing"
     }
   ]
 
