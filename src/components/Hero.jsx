@@ -41,6 +41,7 @@ const Hero = () => {
             <span className="text-black font-medium">Laravel</span>,{" "}
             <span className="text-black font-medium">React</span>,{" "}
             <span className="text-black font-medium">Tailwind CSS</span>,{" "}
+            <span className="text-yellow-400 font-medium">Python</span>,{" "}
             <span className="text-black font-medium">Next.js</span> and{" "}
             <span className="text-black font-medium">WordPress</span>.
           </motion.p>
@@ -52,7 +53,7 @@ const Hero = () => {
             Driven by curiosity and a love for turning ideas into functional
             products. Currently expanding into{" "}
             <span className="text-black font-medium">Python</span> for backend
-            and problem-solving.
+            and problem-solving. and Data Analytics 
           </motion.p>
 
           {/* CTAs */}
