@@ -1,69 +1,60 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaGithub, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaEnvelope, FaWhatsapp } from "react-icons/fa";
 
-const itemVariants = {
+const fade = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+  visible: function(i) {
+    return { opacity: 1, y: 0, transition: { delay: i * 0.15, duration: 0.5 } };
+  },
 };
 
-const Footer = () => {
+const Footer = function() {
   return (
-    <motion.footer
-      className="w-full bg-gray-200 text-gray-800 mt-10"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      transition={{ staggerChildren: 0.2 }}
-    >
-      <div className="max-w-7xl mx-auto px-6 py-8 flex flex-col items-center space-y-4">
-        
-        <motion.h1
-          className="text-xl font-semibold text-black"
-          variants={itemVariants}
-        >
-          Samy Nderi
-        </motion.h1>
+    <footer className="border-t border-gray-100 px-4 sm:px-8 md:px-16 lg:px-24 py-14 mt-10">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-8">
 
-        <motion.p
-          className="text-center text-sm text-gray-600"
-          variants={itemVariants}
-        >
-          Built with React & Tailwind, deployed on Netlify
-        </motion.p>
-
-        {/* Social Links */}
-        <motion.div
-          className="flex space-x-5 text-gray-700"
-          variants={itemVariants}
-        >
-          <motion.a
-            href="https://github.com/Sam-Install"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.15 }}
-          >
-            <FaGithub className="w-5 h-5 hover:text-black transition" />
-          </motion.a>
-
-          <motion.a
-            href="mailto:butchercodeske@gmail.com"
-            whileHover={{ scale: 1.15 }}
-          >
-            <FaEnvelope className="w-5 h-5 hover:text-red-500 transition" />
-          </motion.a>
+        <motion.div custom={0} variants={fade} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+          <h2 className="text-lg font-semibold tracking-tight text-black mb-1">Samy Nderi</h2>
+          <p className="text-xs text-gray-400 uppercase tracking-widest">Full-Stack Developer</p>
         </motion.div>
+
+        <motion.div custom={1} variants={fade} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col items-center gap-2">
+          <p className="text-xs uppercase tracking-widest text-gray-400 mb-2">Get In Touch</p>
+          <div className="flex gap-4">
+            <a href="https://github.com/Sam-Install" target="_blank" rel="noopener noreferrer" className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-200 text-gray-400 hover:text-black hover:border-black transition-colors">
+              <FaGithub className="w-4 h-4" />
+            </a>
+            <a href="mailto:butchercodeske@gmail.com" className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-200 text-gray-400 hover:text-black hover:border-black transition-colors">
+              <FaEnvelope className="w-4 h-4" />
+            </a>
+            <a href="https://wa.me/254753879163" target="_blank" rel="noopener noreferrer" className="w-9 h-9 flex items-center justify-center rounded-full border border-gray-200 text-gray-400 hover:text-black hover:border-black transition-colors">
+              <FaWhatsapp className="w-4 h-4" />
+            </a>
+          </div>
+        </motion.div>
+
+        <motion.div custom={2} variants={fade} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex flex-col items-end gap-2">
+          <p className="text-xs uppercase tracking-widest text-gray-400 mb-2">Navigate</p>
+          <div className="flex gap-5">
+            {["home", "about", "skills", "projects"].map(function(item) {
+              return (
+                <a key={item} href={"#" + item} className="text-xs uppercase tracking-widest text-gray-400 hover:text-black transition-colors no-underline">
+                  {item}
+                </a>
+              );
+            })}
+          </div>
+        </motion.div>
+
       </div>
 
-      <motion.div
-        className="border-t border-slate-200"
-        variants={itemVariants}
-      >
-        <div className="max-w-7xl mx-auto px-6 py-4 text-center text-xs text-gray-500">
-          © 2025 Samy Nderi. All rights reserved.
-        </div>
+      <motion.div custom={3} variants={fade} initial="hidden" whileInView="visible" viewport={{ once: true }} className="border-t border-gray-100 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <p className="text-xs text-gray-400">© 2025 Samy Nderi. All rights reserved.</p>
+        <p className="text-xs text-gray-400">Built with React & Tailwind · Deployed on Netlify</p>
       </motion.div>
-    </motion.footer>
+
+    </footer>
   );
 };
 

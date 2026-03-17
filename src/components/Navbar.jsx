@@ -3,54 +3,41 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CiMenuBurger } from "react-icons/ci";
 import { FaArrowLeft } from "react-icons/fa";
 
+const menuItems = ["home", "about", "skills", "projects"];
+
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
 
-  const menuItems = ["home", "about", "skills", "projects"];
-
   return (
     <>
-      {/* Navbar */}
       <motion.div
-        className="flex items-center justify-between font-medium py-5"
+        className="flex items-center justify-between py-5 font-medium border-b border-gray-100"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1 className="text-black">Samy Nderi</h1>
+        <h1 className="text-black font-semibold tracking-tight">Samy Nderi</h1>
 
-        {/* Desktop Menu */}
-        <ul className="hidden sm:flex gap-4 text-sm text-black">
+        <ul className="hidden sm:flex gap-8 list-none m-0 p-0">
           {menuItems.map((item) => (
-            <motion.a
-              key={item}
-              href={`#${item}`}
-              className="flex flex-col items-center gap-1"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <p className="capitalize">{item}</p>
-              <hr className="w-2/4 border-none bg-amber-500 h-[1.5px] hidden" />
-            </motion.a>
+            <motion.li key={item} whileHover={{ y: -1 }} transition={{ type: "spring", stiffness: 300 }}>
+              <a href={"#" + item} className="text-sm capitalize text-gray-400 hover:text-black transition-colors no-underline">
+                {item}
+              </a>
+            </motion.li>
           ))}
         </ul>
 
-        {/* Right Side */}
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-3 items-center">
           <CiMenuBurger
             className="text-2xl sm:hidden cursor-pointer"
             onClick={() => setVisible(true)}
           />
-
-          <a
-            href="https://wa.me/254753879163"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://wa.me/254753879163" target="_blank" rel="noopener noreferrer">
             <motion.button
-              className="bg-white border border-black text-black px-3 py-2 text-sm rounded"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              className="bg-black text-white px-4 py-2 text-xs uppercase tracking-widest rounded-sm border-none cursor-pointer"
+              whileHover={{ opacity: 0.8 }}
+              transition={{ duration: 0.2 }}
             >
               Contact Me
             </motion.button>
@@ -58,7 +45,6 @@ const Navbar = () => {
         </div>
       </motion.div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {visible && (
           <motion.div
@@ -68,27 +54,34 @@ const Navbar = () => {
             exit={{ x: "100%" }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div className="flex flex-col text-gray-950">
-              <div className="flex items-center gap-4 p-4">
-                <FaArrowLeft
-                  className="text-2xl cursor-pointer"
-                  onClick={() => setVisible(false)}
-                />
-                <p>Back</p>
-              </div>
+            <div className="flex items-center gap-3 p-5 border-b border-gray-100">
+              <FaArrowLeft className="text-xl cursor-pointer text-gray-400 hover:text-black" onClick={() => setVisible(false)} />
+              <span className="font-semibold tracking-tight">Samy Nderi</span>
+            </div>
 
-              {menuItems.map((item) => (
+            <div className="flex flex-col mt-2">
+              {menuItems.map((item, i) => (
                 <motion.a
                   key={item}
-                  href={`#${item}`}
+                  href={"#" + item}
                   onClick={() => setVisible(false)}
-                  className="py-3 pl-6 border-b"
-                  whileHover={{ scale: 1.05, backgroundColor: "#fef3c7" }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  className="py-4 px-6 text-sm capitalize text-gray-500 hover:text-black border-b border-gray-100 no-underline"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  whileHover={{ x: 6, color: "#000" }}
                 >
-                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                  {item}
                 </motion.a>
               ))}
+
+              <div className="px-6 mt-6">
+                <a href="https://wa.me/254753879163" target="_blank" rel="noopener noreferrer">
+                  <button className="w-full bg-black text-white text-xs uppercase tracking-widest py-3 rounded-sm border-none cursor-pointer">
+                    Contact Me
+                  </button>
+                </a>
+              </div>
             </div>
           </motion.div>
         )}

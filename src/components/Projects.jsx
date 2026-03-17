@@ -1,133 +1,98 @@
-import React from "react";
-import { motion } from "framer-motion";
-import a from "../assets/a9 (1).png";
-import saf from "../assets/safarm.png";
-import bl from "../assets/building.png";
-import sec from "../assets/security.png";
-import br from "../assets/barber.png";
-import gl from "../assets/ganillah.png";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import b from "../assets/butcher.png";
+import ti from "../assets/thera.png";
+import dg from "../assets/dogtraining.png";
+import bk from "../assets/bakery.png";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
+const allProjects = [
+  { img: ti, title: "Therapy Website", link: "https://therapyi.netlify.app", description: "A full-stack therapy template website. Backend available on GitHub.", tag: "Full Stack" },
+  { img: b, title: "Butchery Website", link: "https://butcherweb.vercel.app/", description: "A multipage Next.js butchery website.", tag: "Frontend" },
+  { img: dg, title: "Dog Training Website", link: "https://dogweb-pearl.vercel.app/", description: "A dog training website for a startup training academy.", tag: "Frontend" },
+  { img: bk, title: "Bakery Website", link: "https://bakery-gamma-liart.vercel.app/", description: "A bakery website template for bakeries.", tag: "Frontend" },
+];
+
+const tags = ["All", "Full Stack", "Frontend"];
+
+const fade = {
+  hidden: { opacity: 0, y: 24 },
+  visible: function(i) {
+    return { opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.5 } };
   },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
+const Projects = function() {
+  const [activeTag, setActiveTag] = useState("All");
 
-const Projects = () => {
-  const screens = [
-    {
-      img: saf,
-      title: "SaFarm Website",
-      link: "https://safarm.netlify.app",
-      description: "A full-stack farm website. Backend available on GitHub.",
-    },
-    {
-      img: a,
-      title: "Dog Training Website (Frontend)",
-      link: "https://a9dogschoolnetlifyapp.netlify.app",
-      description: "A simple frontend for a dog training school.",
-    },
-    {
-      img: bl,
-      title: "Building Website",
-      link: "https://ahconst.netlify.app",
-      description: "A company website for a construction business.",
-    },
-    {
-      img: sec,
-      title: "Security Website (Frontend)",
-      link: "https://b-security56.netlify.app",
-      description: "A frontend website for a security firm.",
-    },
-    {
-      img: br,
-      title: "Barbershop Landing Page",
-      link: "https://salbarbershop.netlify.app/",
-      description: "Frontend landing page, backend coming soon.",
-    },
-    {
-      img: gl,
-      title: "Ganillah Waters Website",
-      link: "https://ganillahwaters.netlify.app/",
-      description: "Website for a water company (drilling & plumbing).",
-    },
-  ];
+  const filtered = activeTag === "All" ? allProjects : allProjects.filter(function(p) { return p.tag === activeTag; });
 
   return (
-    <motion.div
-      id="projects"
-      className="mt-10 px-6 sm:px-20 py-10"
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-    >
-      <motion.h2
-        className="text-2xl sm:text-3xl text-black text-center mb-10 font-semibold"
-        variants={itemVariants}
-      >
-        Projects
+    <section id="projects" className="py-20 border-t border-gray-100 px-4 sm:px-8 md:px-16 lg:px-24">
+
+      <motion.p custom={0} variants={fade} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-xs uppercase tracking-widest text-amber-600 mb-3 text-center">
+        My Work
+      </motion.p>
+
+      <motion.h2 custom={1} variants={fade} initial="hidden" whileInView="visible" viewport={{ once: true }} className="text-3xl sm:text-4xl font-semibold text-center mb-8">
+        Featured <span className="italic font-light">Projects</span>
       </motion.h2>
 
-      <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 gap-8"
-        variants={containerVariants}
-      >
-        {screens.map((project, index) => (
-          <motion.div
-            key={index}
-            variants={itemVariants}
-            whileHover={{ y: -6 }}
-            transition={{ type: "spring", stiffness: 200 }}
-            className="flex flex-col space-y-3"
-          >
-            <img
-              src={project.img}
-              alt={project.title}
-              className="rounded-lg shadow-md object-cover w-full h-48"
-            />
-            <h3 className="text-lg font-semibold text-gray-700 text-center">
-              {project.title}
-            </h3>
-            <p className="text-gray-600 text-sm text-center">
-              {project.description}
-            </p>
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-amber-500 text-sm hover:underline text-center"
+      {/* Filter Tabs */}
+      <motion.div custom={2} variants={fade} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex justify-center gap-2 mb-12">
+        {tags.map(function(tag) {
+          return (
+            <button
+              key={tag}
+              onClick={function() { setActiveTag(tag); }}
+              className={"text-xs uppercase tracking-widest px-4 py-2 rounded-full border transition-colors cursor-pointer " + (activeTag === tag ? "bg-black text-white border-black" : "bg-white text-gray-400 border-gray-200 hover:border-black hover:text-black")}
             >
-              View Project
-            </a>
-          </motion.div>
-        ))}
+              {tag}
+            </button>
+          );
+        })}
       </motion.div>
 
-      {/* GitHub CTA */}
-      <motion.div
-        className="flex justify-center mt-12"
-        variants={itemVariants}
-      >
-        <a
-          href="https://github.com/Sam-Install"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-6 py-2 border border-amber-500 text-amber-500 rounded-full hover:bg-amber-500 hover:text-white transition"
-        >
-          See more projects on GitHub
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
+        <AnimatePresence>
+          {filtered.map(function(project, i) {
+            return (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 24 }}
+                transition={{ delay: i * 0.1, duration: 0.4 }}
+                whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                className="group border border-gray-100 rounded-2xl overflow-hidden"
+              >
+                <div className="overflow-hidden h-56">
+                  <img src={project.img} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-start justify-between gap-2 mb-3">
+                    <h3 className="text-base font-semibold text-black leading-snug">{project.title}</h3>
+                    <span className="text-xs text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full whitespace-nowrap">{project.tag}</span>
+                  </div>
+                  <p className="text-sm text-gray-400 leading-relaxed mb-5">{project.description}</p>
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-black hover:text-amber-600 transition-colors no-underline font-medium">
+                    View Project <FaExternalLinkAlt className="w-2.5 h-2.5" />
+                  </a>
+                </div>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
+      </div>
+
+      <motion.div custom={8} variants={fade} initial="hidden" whileInView="visible" viewport={{ once: true }} className="flex justify-center mt-14">
+        <a href="https://github.com/Sam-Install" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border border-black text-black text-xs uppercase tracking-widest px-6 py-3 rounded-sm hover:bg-black hover:text-white transition-colors no-underline">
+          <FaGithub className="w-4 h-4" />
+          See more on GitHub
         </a>
       </motion.div>
-    </motion.div>
+
+    </section>
   );
 };
 
