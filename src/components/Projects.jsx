@@ -14,12 +14,30 @@ import {
  import p2   from "../assets/piza2.png";
 import e1   from "../assets/ecom1.png";
  import dg   from "../assets/dg.png";
+ import g2 from '../assets/green2.png';
+ import g from '../assets/green.png'
 
 // Then replace the `imageSrc: null` / `imageSrc1: null` / `imageSrc2: null`
 // values in the allProjects array below with the imported variables.
 // ─────────────────────────────────────────────────────────────────
 
 const allProjects = [
+
+
+ {
+    id: "sokogreen",
+    title: "sokogreen",
+    tag: "Full Stack",
+    description:
+      "A full-stack small pizza restaurant website with online ordering. Backend available on GitHub.",
+    link: "https://sokogreen.vercel.app/",
+    inDev: false,
+    imageType: "double",
+    imageSrc1: g, 
+    imageSrc2: g2, 
+    caseStudy: null,
+  },
+
   {
     id: "knowcoast",
     title: "KnowCoast",
