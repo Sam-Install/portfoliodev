@@ -29,7 +29,7 @@ const allProjects = [
     title: "sokogreen",
     tag: "Full Stack",
     description:
-      "A full-stack small pizza restaurant website with online ordering. Backend available on GitHub.",
+      "A full-stack vegetables and green ordering site frontend , backend still working on it.",
     link: "https://sokogreen.vercel.app/",
     inDev: false,
     imageType: "double",
